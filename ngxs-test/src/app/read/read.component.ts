@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { Store, Select } from '@ngxs/store';
+import { Store } from '@ngxs/store';
 import { Tutorial } from '../models/tutorial.model';
 import { TutorialState } from '../state/tutorial.state';
 import { Observable } from 'rxjs';

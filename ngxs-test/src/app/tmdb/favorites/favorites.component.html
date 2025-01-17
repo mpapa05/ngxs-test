@@ -1,0 +1,4 @@
+<div *ngFor="let favorite of favorites$ | async">
+    <h1>{{ favorite.title }}</h1>
+    <button (click)="removeFromFavorites(favorite)">Remove</button>
+  </div>

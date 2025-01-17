@@ -6,16 +6,36 @@ import { routes } from './app.routes';
 import { provideStore } from '@ngxs/store';
 import { provideStates } from '@ngxs/store';
 import { TutorialState } from './state/tutorial.state';
+import { FavoritesState } from './state/favorites.state';
+import { provideHttpClient } from '@angular/common/http';
+import { NgxsStoragePluginModule, withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
-    provideStore(), 
+    provideHttpClient(),
+    provideStore(
+      [TutorialState, FavoritesState],
+      withNgxsStoragePlugin(
+        {
+          keys: ['tutorials', 'favorites'] // Megadod, hogy mely state-et szeretnéd tárolni
+        }
+      )
+    ), 
     withNgxsReduxDevtoolsPlugin(),
+    // provideNgxsStoragePlugin({
+    //   keys: ['favorites'] // Megadod, hogy mely state-et szeretnéd tárolni
+    // }),
     provideStates(
-      [TutorialState], 
+      [TutorialState, FavoritesState], 
       withNgxsLoggerPlugin()
     ),
   ]
 };
+function provideNgxsStoragePlugin(arg0: {
+  keys: string[]; // Megadod, hogy mely state-et szeretnéd tárolni
+}): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
+  throw new Error('Function not implemented.');
+}
+

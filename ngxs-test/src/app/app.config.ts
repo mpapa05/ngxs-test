@@ -8,7 +8,7 @@ import { provideStates } from '@ngxs/store';
 import { TutorialState } from './state/tutorial.state';
 import { FavoritesState } from './state/favorites.state';
 import { provideHttpClient } from '@angular/common/http';
-import { NgxsStoragePluginModule, withNgxsStoragePlugin } from '@ngxs/storage-plugin';
+import { withNgxsStoragePlugin } from '@ngxs/storage-plugin';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -33,9 +33,5 @@ export const appConfig: ApplicationConfig = {
     ),
   ]
 };
-function provideNgxsStoragePlugin(arg0: {
-  keys: string[]; // Megadod, hogy mely state-et szeretnéd tárolni
-}): import("@angular/core").Provider | import("@angular/core").EnvironmentProviders {
-  throw new Error('Function not implemented.');
-}
+
 
